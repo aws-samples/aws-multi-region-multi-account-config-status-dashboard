@@ -342,4 +342,4 @@ aws cloudformation delete-stack-set --stack-set-name aws-config-checker-stackset
 
 ## Conclusion
 
-This post provided a solution that can be easily deployed on a management account in order to monitor the status of AWS Config recorders on multiple accounts and regions. The solution publishes custom metrics to Amazon CloudWatch. AWS administrator and operators can setup Amazon CloudWatch alarms to be notified when the status of an AWS Config recorder’s status changes for any reason .
+This post provided a solution that can be easily deployed on a AWS management account in order to monitor the status of AWS Config recorders on multiple accounts and regions. The solution publishes custom metrics to Amazon CloudWatch. AWS administrator and operators can setup Amazon CloudWatch alarms to be notified when the status of an AWS Config recorder’s status changes for any reason .
