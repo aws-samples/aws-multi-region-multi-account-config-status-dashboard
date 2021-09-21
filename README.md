@@ -290,7 +290,7 @@ awsconfigstatuscheck-app$ sam logs -n WorkerFunction --stack-name awsconfigstatu
 awsconfigstatuscheck-app$ sam logs -n ManagerFunction --stack-name awsconfigstatuscheck-app --tail
 ```
 
-## View the status of AWS Config Recorders across target accounts  Amazon CloudWatch Custom Metrics.
+## View the status of AWS Config Recorders across target accounts as Amazon CloudWatch Custom Metrics.
 
 After a few minutes login to [AWS CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#metricsV2:graph=~(view~'timeSeries~stacked~false~region~'us-east-1);namespace=~'AWSConfigStatus) to view custom metrics of AWS Config recorders by region and account. 
 
