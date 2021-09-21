@@ -292,11 +292,11 @@ awsconfigstatuscheck-app$ sam logs -n ManagerFunction --stack-name awsconfigstat
 
 ## View the status of AWS Config Recorders across target accounts as Amazon CloudWatch Custom Metrics.
 
-After a few minutes login to [AWS CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#metricsV2:graph=~(view~'timeSeries~stacked~false~region~'us-east-1);namespace=~'AWSConfigStatus) to view custom metrics of AWS Config recorders by region and account. 
+After a few minutes login to [Amazon CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#metricsV2:graph=~(view~'timeSeries~stacked~false~region~'us-east-1);namespace=~'AWSConfigStatus) to view custom metrics of AWS Config recorders by region and account. 
 
 ![AwsConfigStatusChecker CustomMetric](images/custom-metric.png "Custom Metric AWSConfigStatus")
 
-As shown below, you can create a [dashboard](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html) in Amazon CloudWatch in order to view the AWSConfig Status custom metrics in a single view. Create [alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in CloudWatch in order to watch for a decrease in the number of running AWS Config recorders. Then, define an action in order to send a notification to an Amazon SNS Topic and/or [create an OpsItem](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-create-OpsItems-from-CloudWatch-Alarms.html) or [incident in AWS Systems Manager](https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-creation.html).
+As shown below, you can create a [dashboard](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html) in Amazon CloudWatch in order to view the AWSConfig Status custom metrics in a single view. Create [alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in Amazon CloudWatch in order to watch for a decrease in the number of running AWS Config recorders. Then, define an action in order to send a notification to an Amazon SNS Topic and/or [create an OpsItem](https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-create-OpsItems-from-CloudWatch-Alarms.html) or [incident in AWS Systems Manager](https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-creation.html).
 
 ![AwsConfigStatusChecker Dashboard](images/dashboard.png "CloudWatch Dashboard")
 
@@ -342,4 +342,4 @@ aws cloudformation delete-stack-set --stack-set-name aws-config-checker-stackset
 
 ## Conclusion
 
-This post provided a solution that can be easily deployed on a management account in order to monitor the status of AWS Config recorders on multiple accounts and regions. The solution publishes custom metrics to Amazon CloudWatch. AWS administrator and operators can setup CloudWatch alarms to be notified when the status of an AWS Config recorder’s status changes for any reason .
+This post provided a solution that can be easily deployed on a management account in order to monitor the status of AWS Config recorders on multiple accounts and regions. The solution publishes custom metrics to Amazon CloudWatch. AWS administrator and operators can setup Amazon CloudWatch alarms to be notified when the status of an AWS Config recorder’s status changes for any reason .
