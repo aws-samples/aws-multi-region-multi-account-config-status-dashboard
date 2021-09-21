@@ -12,7 +12,7 @@ This application is deployed in a management account, and the [AWS Lambda](https
 
 ## Prerequisites
 
-To utilize our ‘AwsConfigStatusChecker’ application, you need the following tools:
+To utilize our application, you need the following tools:
 
 - [AWS CLI](https://aws.amazon.com/cli/) – Install the AWS CLI
 - [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) – Install the SAM CLI. The Serverless Application Model Command Line Interface (SAM CLI) is an extension of the AWS CLI that adds functionality for building and testing Lambda applications.
@@ -24,7 +24,7 @@ To utilize our ‘AwsConfigStatusChecker’ application, you need the following 
 ## Download the solution
 
 ```bash
-git clone https://gitlab.aws.dev/cca-ambassadors/awsconfigstatuschecker.git
+git clone https://github.com/aws-samples/aws-multi-region-multi-account-config-status-dashboard.git
 ```
 
 ## How to build and deploy this application
@@ -244,7 +244,7 @@ StacksetCFTemplate$ aws cloudformation create-stack-set \
 <details><summary>Click to see sample output</summary>
 
 ```
-awsconfigstatuschecker/StacksetCFTemplate$ aws cloudformation create-stack-set \
+StacksetCFTemplate$ aws cloudformation create-stack-set \
 >     --description "role/policies for aws config checker" \
 >     --stack-set-name aws-config-checker-stackset \
 >     --template-body file://stacksettemplate.yml \
@@ -262,14 +262,14 @@ awsconfigstatuschecker/StacksetCFTemplate$ aws cloudformation create-stack-set \
 **4.** Create an AWS CloudFormation Stack Instances by using AWS CLI. Provide the OrganizationalUnitIds of the member accounts to which the Stack Instances are deployed.
 
 ```bash
-awsconfigstatuschecker/StacksetCFTemplate$ aws cloudformation create-stack-instances \
+StacksetCFTemplate$ aws cloudformation create-stack-instances \
     --deployment-targets OrganizationalUnitIds=<Organizational_Unit_Ids> \
     --stack-set-name aws-config-checker-stackset  --regions us-east-1
 ```
 <details><summary>Click to see sample output</summary>
 
 ```
-awsconfigstatuschecker/StacksetCFTemplate$ aws cloudformation create-stack-instances \
+StacksetCFTemplate$ aws cloudformation create-stack-instances \
 >     --deployment-targets OrganizationalUnitIds=r-xxxx \
 >     --stack-set-name aws-config-checker-stackset  --regions us-east-1
 {
