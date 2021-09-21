@@ -32,7 +32,7 @@ git clone https://github.com/aws-samples/aws-multi-region-multi-account-config-s
 The application has 2 directories:
 
 The application has 2 directories:
-- awsconfigstatuschecker-app – A SAM Application with AWS Lambda functions and AWS CloudFormation Template (template.yaml) to deploy the resources by using SAM CLI. This application is deployed in the AWS Organization management account.
+- awsconfigstatuscheck-app – A SAM Application with AWS Lambda functions and AWS CloudFormation Template (template.yaml) to deploy the resources by using SAM CLI. This application is deployed in the AWS Organization management account.
 - StacksetCFTemplate – This directory contains an AWS CloudFormation StackSet templatefile that defines the IAM Role and IAM Policy deployed on the member accounts. This IAM Policy and IAM Role is necessary on the member accounts for the application to assumeRole and gather AWS Config service status.
 
 **1.** Build the application with the `sam build` command.
@@ -43,7 +43,7 @@ awsconfigstatuscheck-app$ sam build
 <details><summary>Click to see sample output</summary>
 
 ```bash
-awsconfigstatuschecker/awsconfigstatuscheck-app$ sam build
+awsconfigstatuscheck-app$ sam build
 Building codeuri: /home/sundjega/TFC/awsconfigstatuschecker/awsconfigstatuscheck-app/aws_config_status_check runtime: python3.8 metadata: {} functions: ['ManagerFunction', 'WorkerFunction']
 Running PythonPipBuilder:ResolveDependencies
 Running PythonPipBuilder:CopySource
