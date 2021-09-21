@@ -302,7 +302,7 @@ As shown below, you can create a [dashboard](https://docs.aws.amazon.com/AmazonC
 
 ## Cleanup
 
-**1.** To delete the AwsConfigStatusChecker application that you created, use the SAM CLI. 
+**1.** To delete the awsconfigstatuscheck application that you created, use the SAM CLI. 
 
 ```bash
 awsconfigstatuscheck-app$ sam delete
