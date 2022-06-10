@@ -68,61 +68,64 @@ class ConfigRecordersCheck(object):
                 region_name=self.region,
                 config=self.config
             )
-            self.config_recorder_response = awsconfig.describe_configuration_recorder_status()
-            print("region:", self.region)
-            response = self.config_recorder_response["ConfigurationRecordersStatus"]
-            print("len of response", len(response))
-            if len(response) > 0:
-                index = 0
-                self.AWSConfigRecordersTotal += 1
-                print("Value of recording:",
-                        response[index]['recording'])
-                if response[index]['recording'] == True:
-                    print("SUCCESS: {}".format(response))
-                    print("SUCCESS: {}".format(
-                        response[index]['lastStatus']))
-                    print("PUBLISHING SUCCESS")
-                    self.AWSConfigRecordersEnabled += 1
-                    response = self.cloudwatch.put_metric_data(
-                        MetricData=[
-                            {
-                                'MetricName': 'AWSConfigRecordersStatusFlag',
-                                'Dimensions': [
-                                    {
-                                    'Name': "AccountId",
-                                    'Value': self.accountid
+            try:
+                self.config_recorder_response = awsconfig.describe_configuration_recorder_status()
+                print("region:", self.region)
+                response = self.config_recorder_response["ConfigurationRecordersStatus"]
+                print("len of response", len(response))
+                if len(response) > 0:
+                    index = 0
+                    self.AWSConfigRecordersTotal += 1
+                    print("Value of recording:",
+                            response[index]['recording'])
+                    if response[index]['recording'] == True:
+                        print("SUCCESS: {}".format(response))
+                        print("SUCCESS: {}".format(
+                            response[index]['lastStatus']))
+                        print("PUBLISHING SUCCESS")
+                        self.AWSConfigRecordersEnabled += 1
+                        response = self.cloudwatch.put_metric_data(
+                            MetricData=[
+                                {
+                                    'MetricName': 'AWSConfigRecordersStatusFlag',
+                                    'Dimensions': [
+                                        {
+                                        'Name': "AccountId",
+                                        'Value': self.accountid
+                                    },
+                                        {
+                                        'Name': "Region",
+                                        'Value': self.region
+                                    },
+                                        ],
+                                    'Value': 1
                                 },
-                                    {
-                                    'Name': "Region",
-                                    'Value': self.region
-                                },
+                            ],
+                            Namespace='AWSConfigStatus'
+                        )
+                    else:
+                        print("PUBLISHING FAILURE")
+                        response = self.cloudwatch.put_metric_data(
+                            MetricData=[
+                                {
+                                    'MetricName': 'AWSConfigRecordersStatusFlag',
+                                    'Dimensions': [
+                                        {
+                                        'Name': "AccountId",
+                                        'Value': self.accountid
+                                        },
+                                        {
+                                        'Name': "Region",
+                                        'Value': self.region
+                                        },
                                     ],
-                                'Value': 1
-                            },
-                        ],
-                        Namespace='AWSConfigStatus'
-                    )
-                else:
-                    print("PUBLISHING FAILURE")
-                    response = self.cloudwatch.put_metric_data(
-                        MetricData=[
-                            {
-                                'MetricName': 'AWSConfigRecordersStatusFlag',
-                                'Dimensions': [
-                                    {
-                                    'Name': "AccountId",
-                                    'Value': self.accountid
-                                    },
-                                    {
-                                    'Name': "Region",
-                                    'Value': self.region
-                                    },
-                                ],
-                                'Value': 0
-                            },
-                        ],
-                        Namespace='AWSConfigStatus'
-                    )
+                                    'Value': 0
+                                },
+                            ],
+                            Namespace='AWSConfigStatus'
+                        )
+            except Exception as e:
+                print(e)       
 
         print("PUBLISHING SUMMARY")
         cloudwatch = boto3.client(
